@@ -10,16 +10,17 @@ function ToDo({ text, category, id }: IToDo) {
       currentTarget: { name },
     } = event;
     setToDos((oldToDos) => {
-        
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
       console.log("targetIndex : ", targetIndex);
 
       const oldToDo = oldToDos[targetIndex];
       const newToDo = { text, category: name as any, id };
-      
-      console.log(oldToDo, newToDo);
 
-      return [...oldToDos.slice(0, targetIndex), newToDo, ...oldToDos.slice(targetIndex+1)];
+      return [
+        ...oldToDos.slice(0, targetIndex),
+        newToDo,
+        ...oldToDos.slice(targetIndex + 1),
+      ];
     });
   };
 
@@ -28,14 +29,15 @@ function ToDo({ text, category, id }: IToDo) {
       currentTarget: { name },
     } = event;
     setToDos((oldToDos) => {
-        
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
       console.log("targetIndex : ", targetIndex);
 
       const oldToDo = oldToDos[targetIndex];
-  
 
-      return [...oldToDos.slice(0, targetIndex), ...oldToDos.slice(targetIndex+1)];
+      return [
+        ...oldToDos.slice(0, targetIndex),
+        ...oldToDos.slice(targetIndex + 1),
+      ];
     });
   };
 

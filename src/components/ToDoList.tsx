@@ -1,11 +1,6 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  atom,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
+import React from "react";
+
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Categories, categoryState, toDoSelector, toDoState } from "./atoms";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
@@ -17,8 +12,6 @@ function ToDoList() {
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
   };
-
-  console.log(toDos);
 
   return (
     <div>
