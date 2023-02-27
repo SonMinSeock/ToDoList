@@ -1,7 +1,16 @@
 import React from "react";
 
 import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  Line,
+  List,
+  Select,
+  Title,
+  WrapperForm,
+  WrapperList,
+} from "../styles/styles";
 import { Categories, categoryState, toDoSelector, toDoState } from "./atoms";
+import CreateCategories from "./CreateCategories";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
@@ -13,19 +22,30 @@ function ToDoList() {
     setCategory(event.currentTarget.value as any);
   };
 
+  console.log(category);
+
   return (
     <div>
-      <h1>To Dos</h1>
+      <Title>🏃‍♂️ 슬기로운 일상 생활 🏃‍♂️</Title>
+      <Line />
+      <WrapperForm>
+        <Select value={category} onInput={onInput}>
+          <option value={Categories.TO_DO}>To Do</option>
+          <option value={Categories.DOING}>Doing</option>
+          <option value={Categories.DONE}>Done</option>
+        </Select>
+        <CreateToDo />
+      </WrapperForm>
+      <WrapperList>
+        <List>
+          {toDos?.map((toDo) => (
+            <ToDo key={toDo.id} {...toDo} />
+          ))}
+        </List>
+      </WrapperList>
       <hr />
-      <select value={category} onInput={onInput}>
-        <option value={Categories.TO_DO}>To Do</option>
-        <option value={Categories.DOING}>Doing</option>
-        <option value={Categories.DONE}>Done</option>
-      </select>
-      <CreateToDo />
-      {toDos?.map((toDo) => (
-        <ToDo key={toDo.id} {...toDo} />
-      ))}
+      <Line />
+      <CreateCategories />
     </div>
   );
 }
